@@ -1,0 +1,460 @@
+1.Pod file
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod1
+  namespace: dev
+spec:
+  containers:
+     - name:
+       image:
+       ports:
+         - containerPort:
+
+Service files
+
+2. Pod file for Service file
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod1
+  namespace: dev
+  labels:
+    app: web
+spec:
+  containers:
+     - name:
+       image:
+       ports:
+         - containerPort:
+
+3. Service file for ClusterIP
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: s1
+spec:
+  type: ClusterIP
+  ports:
+    - port:
+      targetPort:
+  selector:
+     app: web
+
+4. Service file for Nodeport
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: s1
+spec:
+  type: NodePort
+  ports:
+    - port:
+      targetPort:
+      nodePort: 30000–32767
+  selector:
+     app: web
+
+5. Service file for Loadbalancer
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: s1
+spec:
+  type: LoadBalancer
+  ports:
+    - port:
+      targetPort:
+  selector:
+     app: web
+
+6. Replication controller
+
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: rc
+spec:
+   replicas: 3
+   selector:
+      app: web
+   template:
+      metadata:
+         labels:
+            app: web
+      spec:
+          containers:
+             - name:
+               image:
+               ports:
+                - containerPort:
+
+7. ReplicaSet
+
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: rs
+spec:
+   replicas: 3
+   selector:
+      matchLabels:
+          app: web
+   template:
+      metadata:
+         labels:
+            app: web
+      spec:
+          containers:
+             - name:
+               image:
+               ports:
+                - containerPort:
+
+8. Deployment file for Replicaset
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: d1
+spec:
+   replicas: 3
+   selector:
+      matchLabels:
+          app: web
+   template:
+      metadata:
+         labels:
+            app: web
+      spec:
+          containers:
+             - name:
+               image:
+               ports:
+                - containerPort:
+
+9. NameSpace file
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dev
+
+10. Deployment file for Namespace
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: d1
+  namespace: dev
+spec:
+   replicas: 3
+   selector:
+      matchLabels:
+          app: web
+   template:
+      metadata:
+         labels:
+            app: web
+      spec:
+          containers:
+             - name:
+               image:
+               ports:
+                - containerPort:
+
+11. ConfigMap file
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cmname
+data:
+   key1: "value1"
+   key2: "value2"
+
+12. To Inject variables to pods [complete config file]
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: d1
+spec:
+   replicas: 3
+   selector:
+      matchLabels:
+          app: web
+   template:
+      metadata:
+         labels:
+            app: web
+      spec:
+          containers:
+             - name:
+               image:
+               ports:
+                - containerPort:
+               envFrom:
+                 - configMapRef:
+                        name: cmname
+
+13. To Inject particular variables to pods
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: d1
+spec:
+   replicas: 3
+   selector:
+      matchLabels:
+          app: web
+   template:
+      metadata:
+         labels:
+            app: web
+      spec:
+          containers:
+             - name:
+               image:
+               ports:
+                - containerPort:
+               env:
+                 - name: keyname
+                   valueFrom:
+                      configMapKeyRef:
+                         name: cmname
+                         key: keyname
+
+14. Secret file
+
+apiVersion: v1
+kind: Secret
+metadata:
+    name: s1
+type: Opaque
+stringData:
+     key: value
+
+15. To Inject variables to pods [complete secret file]
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: d1
+spec:
+   replicas: 3
+   selector:
+      matchLabels:
+          app: web
+   template:
+      metadata:
+         labels:
+            app: web
+      spec:
+          containers:
+             - name:
+               image:
+               ports:
+                - containerPort:
+               envFrom:
+                 - secretRef:
+                        name: secretname
+
+16. To Inject particular variables to pods [secret file]
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: d1
+spec:
+   replicas: 3
+   selector:
+      matchLabels:
+          app: web
+   template:
+      metadata:
+         labels:
+            app: web
+      spec:
+          containers:
+             - name:
+               image:
+               ports:
+                - containerPort:
+               env:
+                 - name: keyname
+                   valueFrom:
+                      secretKeyRef:
+                         name: secretname
+                         key: keyname
+
+VOLUMES
+
+17. Deployment file for emptyDir
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: d1
+spec:
+   replicas: 3
+   selector:
+      matchLabels:
+          app: web
+   template:
+      metadata:
+         labels:
+            app: web
+      spec:
+          containers:
+             - name: c1
+               image: ubuntu
+               command: ["/bin/bash",'-c',"while true; do echo hello;sleep 300; done"]
+               volumeMounts:
+                      - name: vname
+                        mountPath: /data/path
+             - name: c2
+               image: amazonlinux
+               command: ["/bin/bash",'-c',"while true; do echo hello;sleep 300; done"]
+               volumeMounts:
+                      - name: vname
+                        mountPath: /data/path
+          volumes:
+           - name: vname
+             emptyDir: {}
+
+18. Deployment file for hostPath
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: d1
+spec:
+   replicas: 3
+   selector:
+      matchLabels:
+          app: web
+   template:
+      metadata:
+         labels:
+            app: web
+      spec:
+          containers:
+             - name: c1
+               image: ubuntu
+               command: ["/bin/bash",'-c',"while true; do echo hello;sleep 300; done"]
+               volumeMounts:
+                      - name: vname
+                        mountPath: /data/path
+             - name: c2
+               image: amazonlinux
+               command: ["/bin/bash",'-c',"while true; do echo hello;sleep 300; done"]
+               volumeMounts:
+                      - name: vname
+                        mountPath: /data/path
+          volumes:
+           - name: vname
+             hostPath:
+                 path: /data/vol
+
+19. Persistent volume
+
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv1
+spec:
+    capacity:
+         storage: 10Gi
+    accessModes:
+         - ReadWriteOnce
+    awsElasticBlockStore:
+         volumeID:
+         fsType: ext4
+    persistentVolumeReclaimPolicy: Recycle
+
+20. Persistent volume claim
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc1
+spec:
+    accessModes:
+         - ReadWriteOnce
+    resources:
+           requests:
+             storage: 5Gi
+
+21. Deployment file for Persistent volume claim
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: d1
+spec:
+   replicas: 3
+   selector:
+      matchLabels:
+          app: web
+   template:
+      metadata:
+         labels:
+            app: web
+      spec:
+          containers:
+             - name: c1
+               image: ubuntu
+               command: ["/bin/bash",'-c',"while true; do echo hello;sleep 300; done"]
+               volumeMounts:
+                      - name: vname
+                        mountPath: /data/path
+             - name: c2
+               image: amazonlinux
+               command: ["/bin/bash",'-c',"while true; do echo hello;sleep 300; done"]
+               volumeMounts:
+                      - name: vname
+                        mountPath: /data/path
+          volumes:
+           - name: vname
+             persistentVolumeClaim:
+                       claimName: pvc1
+
+
+
+
+
+ 
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
