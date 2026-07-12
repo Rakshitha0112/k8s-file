@@ -1,0 +1,49 @@
+kops update cluster --name devu.k8s.local --yes --admin
+
+
+
+kops create cluster --name rakshitha.k8s.local --zones ap-south-1b --control-plane-size c7i-flex.large --node-size c7i-flex.large --control-plane-count 1 --node-count 2
+
+export KOPS_STATE_STORkops update cluster --name devu.k8s.local --yes --admin
+
+
+
+kops create cluster --name rakshitha.k8s.local --zones ap-south-1b --control-plane-size c7i-flex.large --node-size c7i-flex.large --control-plane-count 1 --node-count 2
+
+export KOPS_STATE_STORkops update cluster --name devu.k8s.local --yes --admin
+
+
+
+kops create cluster --name rakshitha.k8s.local --zones ap-south-1b --control-plane-size c7i-flex.large --node-size c7i-flex.large --control-plane-count 1 --node-count 2
+
+export KOPS_STATE_STORkops update cluster --name devu.k8s.local --yes --admin
+
+
+
+kops create cluster --name rakshitha.k8s.local --zones ap-south-1b --control-plane-size c7i-flex.large --node-size c7i-flex.large --control-plane-count 1 --node-count 2
+
+export KOPS_STATE_STORkops update cluster --name devu.k8s.local --yes --admin
+
+
+
+kops create cluster --name rakshitha.k8s.local --zones ap-south-1b --control-plane-size c7i-flex.large --node-size c7i-flex.large --control-plane-count 1 --node-count 2
+
+export KOPS_STATE_STORkops update cluster --name devu.k8s.local --yes --admin
+
+
+
+kops create cluster --name rakshitha.k8s.local --zones ap-south-1b --control-plane-size c7i-flex.large --node-size c7i-flex.large --control-plane-count 1 --node-count 2
+
+export KOPS_STATE_STORkops update cluster --name devu.k8s.local --yes --admin
+
+
+
+kops create cluster --name rakshitha.k8s.local --zones ap-south-1b --control-plane-size c7i-flex.large --node-size c7i-flex.large --control-plane-count 1 --node-count 2
+
+export KOPS_STATE_STOR1kops update cluster --name devu.k8s.local --yes --admin
+
+
+
+kops create cluster --name rakshitha.k8s.local --zones ap-south-1b --control-plane-size c7i-flex.large --node-size c7i-flex.large --control-plane-count 1 --node-count 2
+
+export KOPS_STATE_STOR
