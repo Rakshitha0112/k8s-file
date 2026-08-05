@@ -283,4 +283,4 @@ Git (5%)
 DevOps concepts (5%)
 HR questions (5%)
 
-Given your DevOps background, if you prepare Python well and can confidently explain your projects and CI/CD pipeline, you'll be well aligned with what this internship is looking for.
+Given your DevOps background, if you prepare Python well and can confidently exp
