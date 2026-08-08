@@ -272,15 +272,3 @@ You already have experience with:
 ✅ SonarQube
 ✅ Nexus
 
-The main area to strengthen for this role is Python programming, since it is emphasized throughout the job description.
-
-Preparation priority (1 day)
-Python basics + coding practice (40%)
-Linux commands and troubleshooting (20%)
-Jenkins + CI/CD pipeline (15%)
-Docker (10%)
-Git (5%)
-DevOps concepts (5%)
-HR questions (5%)
-
-Given your DevOps background, if you prepare Python well and can confidently exp
